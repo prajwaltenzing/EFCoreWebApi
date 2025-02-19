@@ -1,0 +1,46 @@
+﻿
+<EditForm Model="Book" OnValidSubmit="OnSubmitClicked">
+    <DataAnnotationsValidator />
+
+
+    <div>
+        <label>Book ID:</label>
+        <InputNumber @bind-Value="Book.BookId" class="form-control" />
+        <ValidationMessage For="@(() => Book.BookId)" class="text-danger" />
+    </div>
+
+    <div>
+        <label>Name:</label>
+        <InputText @bind-Value="Book.Title" class="form-control" />
+        <ValidationMessage For="@(() => Book.Title)" class="text-danger" />
+    </div>
+
+    <div>
+        <label>Price:</label>
+        <InputNumber @bind-Value="Book.Price" class="form-control" />
+    </div>
+
+    <div>
+        <label>Isbn:</label>
+        <InputNumber @bind-Value="Book.Isbn" class="form-control" />
+    </div>
+
+    <div>
+        <label>PublishedYear:</label>
+        <InputNumber @bind-Value="Book.PublishedYear" class="form-control" />
+        <ValidationMessage For="@(() => Book.PublishedYear)" class="text-danger" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Add Employee</button>
+</EditForm>
+
+@code {
+    private readonly HttpClient client = new();
+    private string _baseUrl = "https://localhost:7264/api/Books";
+    private BookDto Book = new();
+
+    private async Task OnSubmitClicked()
+    {
+
+    }
+}

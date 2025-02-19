@@ -1,0 +1,35 @@
+﻿@page "/getBooks"
+
+@if (BookList.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Author</th>
+                <th>Isbn</th>
+                <th>PublishedYear</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in BookList)
+            {
+                <tr>
+                    <td>@book.BookId</td>
+                    <td>@book.Title</td>
+                    <td>@book.Price</td>
+                    <td>@book.Author</td>
+                    <td>@book.Isbn</td>
+                    <td>@book.PublishedYear</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Loading books...</p>
+}
+
