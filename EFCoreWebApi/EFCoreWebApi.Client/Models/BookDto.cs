@@ -13,6 +13,7 @@ public class BookDto
 
     public string? Author { get; set; }
     [Required(ErrorMessage = "Published Year is required")]
+    //[CurrentYearRange(2000,ErrorMessage = $"Publiched year must be between 2000 and .")]
     [CurrentYearRange(2000)]
     public int? PublishedYear { get; set; }
 
@@ -32,17 +33,32 @@ public class CurrentYearRangeAttribute : ValidationAttribute
     {
         _minYear = minYear;
     }
-    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+    //public override bool IsValid(object? value)
+    //{
+    //    if (value is int year)
+    //    {
+    //        int currentYear = DateTime.Now.Year;
+    //        if (_minYear > year || year > currentYear)
+    //        {
+    //            return  false;
+    //        }
+    //    }
+    //    return  true;
+    //}
+    protected  override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
-        
-        if (value is int year) 
+
+        if (value is int year)
         {
             int currentYear = DateTime.Now.Year;
-            if(year < _minYear || year > currentYear)
+            Task.Delay(2000);
+
+            if (year < _minYear || year > currentYear)
             {
-                return new ValidationResult($"Publiched year must be between {_minYear} and {currentYear}.");
+                Task.Delay(3000);
+                return  new ValidationResult($"Publiched year must be between {_minYear} and {currentYear}.");
             }
         }
-        return ValidationResult.Success;
+        return  ValidationResult.Success;
     }
 }

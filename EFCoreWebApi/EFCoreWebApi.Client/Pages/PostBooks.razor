@@ -1,4 +1,4 @@
-﻿
+﻿@page "/postBooks"
 <EditForm Model="Book" OnValidSubmit="OnSubmitClicked">
     <DataAnnotationsValidator />
 
@@ -22,7 +22,7 @@
 
     <div>
         <label>Isbn:</label>
-        <InputNumber @bind-Value="Book.Isbn" class="form-control" />
+        <InputText @bind-Value="Book.Isbn" class="form-control" />
     </div>
 
     <div>
@@ -41,6 +41,8 @@
 
     private async Task OnSubmitClicked()
     {
-
+        Book.BookId = 0;
+        var httpResponseMessage =  client.PostAsJsonAsync<BookDto>(_baseUrl, Book);
+        Console.WriteLine(httpResponseMessage.Result);
     }
 }
